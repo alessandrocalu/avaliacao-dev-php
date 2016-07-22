@@ -8,6 +8,6 @@ class Dictionar extends Model
 {
     public function __construct()
     {
-    	return $this->belongsTo('App\Dictionar');
+    	return $this->belongsTo('App\Material');
     }
 }

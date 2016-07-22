@@ -11,6 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'AuthorController@index');
+Route::get('authors', 'AuthorController@index');
+Route::get('dictionars', 'DictionarController@index');
+Route::get('books', 'BookController@index');

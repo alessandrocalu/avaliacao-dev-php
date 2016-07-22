@@ -11,8 +11,6 @@ use App\Dictionar;
 class DictionarController extends MaterialController
 {
 
-
-
     /**
      * The user repository instance.
      */
@@ -37,7 +35,8 @@ class DictionarController extends MaterialController
      */
     public function index()
     {
-        //
+        $data = $this->dictionar->all();
+        return view('dictionars.list', $data);
     }
 
     /**

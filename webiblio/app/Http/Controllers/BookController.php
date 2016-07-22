@@ -37,6 +37,8 @@ class BookController extends MaterialController
     public function index()
     {
         //
+        $data = $this->book->all();
+        return view('books.list', $data);  
     }
 
     /**

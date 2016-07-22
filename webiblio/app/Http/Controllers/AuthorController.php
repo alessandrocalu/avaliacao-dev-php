@@ -36,7 +36,8 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        //
+        $data = $this->author->all();
+        return view('authors.list', $data);
     }
 
     /**

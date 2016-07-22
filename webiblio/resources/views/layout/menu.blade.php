@@ -39,17 +39,17 @@
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
-                        <li {{ (Request::is('*usuarios') ? 'class="active"' : '') }}>
+                        <!--<li {{ (Request::is('*usuarios') ? 'class="active"' : '') }}>
                             <a href="{{ url ('usuarios') }}"><i class="fa fa-group fa-fw"></i> Usuários</a>
+                        </li>-->
+                        <li {{ (Request::is('*authors') ? 'class="active"' : '') }}>
+                            <a href="{{ url ('authors') }}"><i class="fa fa-group fa-fw"></i> Autores</a>
                         </li>
-                        <li {{ (Request::is('*autores') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('autores') }}"><i class="fa fa-group fa-fw"></i> Autores</a>
+                        <li {{ (Request::is('*books') ? 'class="active"' : '') }}>
+                            <a href="{{ url ('books') }}"><i class="fa fa-book fa-fw"></i> Livros</a>
                         </li>
-                        <li {{ (Request::is('*livros') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('livros') }}"><i class="fa fa-book fa-fw"></i> Livros</a>
-                        </li>
-                        <li {{ (Request::is('*dicionarios') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('dicionarios') }}"><i class="fa fa-book fa-fw"></i> Dicionários</a>
+                        <li {{ (Request::is('*dictionars') ? 'class="active"' : '') }}>
+                            <a href="{{ url ('dictionars') }}"><i class="fa fa-book fa-fw"></i> Dicionários</a>
                         </li>
                     </ul>
                 </div>

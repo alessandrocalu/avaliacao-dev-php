@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Material extends Model
 {
-    public function __construct($tipo == "book")
+    public function __construct()
     {
 		return $this->belongsToMany('App\Author', 'material_author');
     }
