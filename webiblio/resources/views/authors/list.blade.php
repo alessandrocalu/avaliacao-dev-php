@@ -37,7 +37,7 @@
                                                     <i class="fa fa-edit">
                                                     </i>
                                                 </a>
-                                                <a href="{{ url ('authors/destroy/'.$author->id) }}" type="button" class="btn btn-warning btn-circle" title="Apagar Autor">
+                                                <a href="{{ url ('authors/delete/'.$author->id) }}" type="button" class="btn btn-warning btn-circle" title="Apagar Autor">
                                                     <i class="fa fa-times">
                                                     </i>
                                                 </a>

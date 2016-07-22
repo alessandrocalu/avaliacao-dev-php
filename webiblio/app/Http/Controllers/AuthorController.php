@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -36,7 +38,7 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        $authors = $this->author->paginate(10);
+        $authors = $this->author->orderBy('nome')->paginate(10);
         $data["authors"] = $authors;
         return view('authors.list', $data);
     }
@@ -48,7 +50,7 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        return "Criar Autor";
+        return view('authors.add');
     }
 
     /**
@@ -59,7 +61,29 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $validator = Validator::make($request->all(), [
+            'nome' => 'required|unique:authors|min:3'
+        ]);
+
+
+        if ($validator->fails()) { 
+            return redirect('authors/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        else
+        {
+
+            $this->author->nome = $request->nome;
+            $this->author->notacao = $request->notacao;
+            if ($this->author->notacao == ''){
+                $this->author->notacao = substr($this->author->nome, 0, 3);
+            }
+            $this->author->save();
+            return redirect('authors');
+        }    
+
     }
 
     /**
@@ -81,7 +105,9 @@ class AuthorController extends Controller
      */
     public function edit($id)
     {
-        return "Editar Autor ".$id;
+        $author = $this->author->find($id);
+        $data["author"] = $author;
+        return view('authors.edit', $data);
     }
 
     /**
@@ -91,9 +117,30 @@ class AuthorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'id' => 'required',
+            'nome' => 'required|min:3'
+        ]);
+
+
+        if ($validator->fails()) { 
+            return redirect('authors/edit/'.$request->id)
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        else
+        {
+            $this->author = $this->author->find($request->id);
+            $this->author->nome = $request->nome;
+            $this->author->notacao = $request->notacao;
+            if ($this->author->notacao == ''){
+                $this->author->notacao = strtoupper(substr($this->author->nome, 0, 3));
+            }
+            $this->author->save();
+            return redirect('authors');
+        }    
     }
 
     /**
@@ -104,6 +151,21 @@ class AuthorController extends Controller
      */
     public function destroy($id)
     {
-        return "Apagar Autor ".$id;
+        $this->author->find($id)->delete();
+        return redirect('authors');
+    }
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete($id)
+    {
+        $author = $this->author->find($id);
+        $data["author"] = $author;
+        return view('authors.del', $data);
     }
 }
