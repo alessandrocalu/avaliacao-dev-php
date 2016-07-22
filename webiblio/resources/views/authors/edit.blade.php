@@ -22,7 +22,7 @@
                     <div class="row">
                         <br>
                     </div>
-                    <form action="{{ url ('authors/update') }}" role="form" method="post">
+                    <form action="{{ url ('authors/update') }}" enctype="multipart/form-data" method="post">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="id" value="{{ $author->id }}">
                         <div class="row">

@@ -132,7 +132,7 @@ class DictionarController extends MaterialController
         else
         {
             $this->dictionar = $this->dictionar->find($request->id);
-            $this->edita_material($request, , $this->dictionar->material_id);
+            $this->edita_material($request, $this->dictionar->material_id);
             $this->dictionar->edicao = $request->edicao;
             $this->dictionar->classificacao = $request->classificacao;
             $this->dictionar->save();
@@ -149,7 +149,7 @@ class DictionarController extends MaterialController
      */
     public function destroy($id)
     {
-        parent::destroy($this->book->find($id)->material_id);
+        parent::destroy($this->dictionar->find($id)->material_id);
         return redirect('dictionars');
     }
 
@@ -164,7 +164,7 @@ class DictionarController extends MaterialController
     {
         $dictionar = $this->dictionar->find($id);
         $data["dictionar"] = $dictionar;
-        $data["authors"] = $book->material->authors->all();
+        $data["authors"] = $dictionar->material->authors->all();
         return view('dictionars.del', $data);
     }
 }

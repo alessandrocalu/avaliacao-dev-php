@@ -22,7 +22,7 @@
                     <div class="row">
                         <br>
                     </div>
-                    <form action="{{ url ('books/store') }}" role="form" method="post">
+                    <form action="{{ url ('books/store') }}" enctype="multipart/form-data" method="post">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="row">
                             <div class="col-lg-1"></div>

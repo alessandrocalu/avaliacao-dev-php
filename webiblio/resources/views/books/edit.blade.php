@@ -22,7 +22,7 @@
                     <div class="row">
                         <br>
                     </div>
-                    <form action="{{ url ('books/update') }}" role="form" method="post">
+                    <form action="{{ url ('books/update') }}" enctype="multipart/form-data" method="post">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="id" value="{{ $book->id }}">
                         <div class="row">
@@ -55,8 +55,7 @@
                                 <div class="col-lg-10">
                                     <label>Imagem Capa Atual</label>
                                     <br>
-                                    <img scr="{{ asset('images/'.$book->material->imagem_capa) }}" />
-                                    <input name="limpar_imagem_atual" type="checkbox">Limpar imagem atual
+                                    <img src="{{ asset('images/'.$book->material->imagem_capa) }}" />
                                 </div>
                                 <div class="col-lg-1"></div>
                             </div> 

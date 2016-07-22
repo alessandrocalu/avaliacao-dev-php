@@ -18,7 +18,7 @@
                         <div class="col-lg-10">
                             <label>Título</label>
                             <br>
-                            <value>{{ $dicionar->material->titulo }}</value>
+                            <value>{{ $dictionar->material->titulo }}</value>
                         </div>
                         <div class="col-lg-1"></div>
                     </div> 
@@ -27,17 +27,17 @@
                         <div class="col-lg-10">
                             <label>Subtítulo</label>
                             <br>
-                            <value>{{ $dicionar->material->subtitulo }}</value>
+                            <value>{{ $dictionar->material->subtitulo }}</value>
                         </div>
                         <div class="col-lg-1"></div>
                     </div> 
-                    @if ($dicionar->material->imagem_capa != '')
+                    @if ($dictionar->material->imagem_capa != '')
                         <div class="row">
                             <div class="col-lg-1"></div>
                             <div class="col-lg-10">
                                 <label>Imagem Capa</label>
                                 <br>
-                                <img scr="{{ asset('images/'.$book->material->imagem_capa) }}" />
+                                <img scr="{{ asset('images/'.$dictionar->material->imagem_capa) }}" />
                             </div>
                             <div class="col-lg-1"></div>
                         </div> 
@@ -60,12 +60,12 @@
                         <div class="col-lg-5">
                             <label>Edição</label>
                             <br>
-                            <value>{{ $dicionar->edicao }}</value>
+                            <value>{{ $dictionar->edicao }}</value>
                         </div>
                         <div class="col-lg-5">
                             <label>Classificação</label>
                             <br>
-                            <value>{{ $dicionar->classificacao }}</value>
+                            <value>{{ $dictionar->classificacao }}</value>
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
@@ -74,8 +74,8 @@
                         <div class="col-lg-1"></div>
                         <div class="col-lg-10">
                             <div class="pull-right">
-                                <a href="{{ url ('dicionars/destroy/'.$dicionar->id) }}" class="btn btn-primary">Confirmar Exclusão</a>
-                                <a href="{{ url ('dicionars') }}" type="button" class="btn btn-danger">Cancelar</a>
+                                <a href="{{ url ('dictionars/destroy/'.$dictionar->id) }}" class="btn btn-primary">Confirmar Exclusão</a>
+                                <a href="{{ url ('dictionars') }}" type="button" class="btn btn-danger">Cancelar</a>
                             </div>   
                         </div>    
                         <div class="col-lg-1"></div>

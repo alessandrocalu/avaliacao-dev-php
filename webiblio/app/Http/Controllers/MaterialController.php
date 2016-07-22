@@ -183,8 +183,9 @@ class MaterialController extends Controller
     private function grava_imagem($request){
         if ($request->hasFile('arquivo_capa')) {
             if ($request->file('arquivo_capa')->isValid()) {
-                $request->file('arquivo_capa')->move(asset('images'));
-                return $request->file('arquivo_capa')->getClientOriginalName();
+                $filename = $request->file('arquivo_capa')->getClientOriginalName();
+                $request->file('arquivo_capa')->move(public_path().'/images',$filename);
+                return $filename;
             }
         }
         return "";
