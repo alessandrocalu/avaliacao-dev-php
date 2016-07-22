@@ -15,7 +15,7 @@ class Books extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('material_id')->unsigned();
-            $table->foreign('material_id')->references('id')->on('materials');
+            $table->foreign('material_id')->references('id')->on('materials')->onDelete('cascade');
             $table->string('isbn',20);
             $table->integer('paginas')->unsigned();
             $table->text('resumo')->nullable();

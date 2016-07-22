@@ -48,7 +48,7 @@ class BookController extends MaterialController
      */
     public function create()
     {
-        //
+        return view('books.add');
     }
 
     /**
@@ -104,6 +104,21 @@ class BookController extends MaterialController
      */
     public function destroy($id)
     {
-        //
+        parent::destroy($this->book->find($id)->material_id);
+        return redirect('books');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete($id)
+    {
+        $book = $this->book->find($id);
+        $data["book"] = $book;
+        $data["authors"] = $book->material->authors->all();
+        return view('books.del', $data);
     }
 }

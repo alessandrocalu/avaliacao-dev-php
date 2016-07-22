@@ -15,7 +15,7 @@ class Dictionar extends Migration
         Schema::create('dictionars', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('material_id')->unsigned();
-            $table->foreign('material_id')->references('id')->on('materials');
+            $table->foreign('material_id')->references('id')->on('materials')->onDelete('cascade');
             $table->string('edicao',50);
             $table->string('classificacao',50);
             $table->timestamps();

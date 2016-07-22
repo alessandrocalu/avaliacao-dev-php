@@ -24,13 +24,25 @@ Route::post('authors/update', 'AuthorController@update');
 
 
 
+
 Route::get('dictionars', 'DictionarController@index');
 Route::get('dictionars/create', 'DictionarController@create');
 Route::get('dictionars/edit/{id}', 'DictionarController@edit');
 Route::get('dictionars/delete/{id}', 'DictionarController@delete');
+Route::get('dictionars/destroy/{id}', 'DictionarController@destroy');
+
+Route::post('dictionars/store', 'DictionarController@store');
+Route::post('dictionars/update', 'DictionarController@update');
+
+
+
 
 Route::get('books', 'BookController@index');
 Route::get('books/create', 'BookController@create');
 Route::get('books/edit/{id}', 'BookController@edit');
 Route::get('books/delete/{id}', 'BookController@delete');
+Route::get('books/destroy/{id}', 'BookController@destroy');
+
+Route::post('books/store', 'BookController@store');
+Route::post('books/update', 'BookController@update');
 

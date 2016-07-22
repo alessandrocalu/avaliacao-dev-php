@@ -8,7 +8,7 @@
             <div class="col-lg-10">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Verifique as informações abaixove confirme exclusão:
+                        Verifique as informações abaixo e confirme exclusão:
                     </div>
                     <div class="row">
                         <br>

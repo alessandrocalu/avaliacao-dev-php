@@ -47,7 +47,7 @@ class DictionarController extends MaterialController
      */
     public function create()
     {
-        return "create";
+        return view('dictionars.add');
     }
 
     /**
@@ -90,7 +90,7 @@ class DictionarController extends MaterialController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
     }
@@ -103,6 +103,22 @@ class DictionarController extends MaterialController
      */
     public function destroy($id)
     {
-        //
+        parent::destroy($this->book->find($id)->material_id);
+        return redirect('dictionars');
+    }
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete($id)
+    {
+        $dictionar = $this->dictionar->find($id);
+        $data["dictionar"] = $dictionar;
+        $data["authors"] = $book->material->authors->all();
+        return view('dictionars.del', $data);
     }
 }

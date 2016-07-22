@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Material extends Model
 {
-    public function __construct()
+    public function authors()
     {
 		return $this->belongsToMany('App\Author', 'material_author');
     }
