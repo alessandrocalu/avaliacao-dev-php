@@ -47,7 +47,7 @@ class DictionarController extends MaterialController
      */
     public function create()
     {
-        //
+        return "create";
     }
 
     /**

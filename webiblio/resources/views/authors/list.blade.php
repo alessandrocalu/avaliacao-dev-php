@@ -13,12 +13,16 @@
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="table-responsive">
+                            <div class="pull-right">
+                                <a href="{{ url ('authors/create') }}" type="button" class="btn btn-primary">Novo Autor</a>
+                            </div>
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
                                         <th>#</th>
                                         <th>Notação</th>
                                         <th>Nome</th>
+                                        <th>Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -27,6 +31,18 @@
                                         <td>{{ $author->id }}</td>
                                         <td>{{ $author->notacao }}</td>
                                         <td>{{ $author->nome }}</td>
+                                        <td>
+                                            <nobr>
+                                                <a href="{{ url ('authors/edit/'.$author->id) }}" type="button" class="btn btn-info btn-circle" title="Editar Autor">
+                                                    <i class="fa fa-edit">
+                                                    </i>
+                                                </a>
+                                                <a href="{{ url ('authors/destroy/'.$author->id) }}" type="button" class="btn btn-warning btn-circle" title="Apagar Autor">
+                                                    <i class="fa fa-times">
+                                                    </i>
+                                                </a>
+                                            </nobr>
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>

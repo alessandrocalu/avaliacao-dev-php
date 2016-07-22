@@ -13,6 +13,9 @@
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="table-responsive">
+                            <div class="pull-right">
+                                <a href="{{ url ('dictionars/create') }}" type="button" class="btn btn-primary">Novo Dicionário</a>
+                            </div>
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
@@ -20,6 +23,7 @@
                                         <th>Título</th>
                                         <th>Subtítulo</th>
                                         <th>Edição</th>
+                                        <th>Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -29,6 +33,18 @@
                                         <td>{{ $dictionar->material->titulo }}</td>
                                         <td>{{ $dictionar->material->subtitulo }}</td>
                                         <td>{{ $dictionar->edicao }}</td>
+                                        <td>
+                                            <nobr>
+                                                <a href="{{ url ('dictionars/edit/'.$dictionar->id) }}" type="button" class="btn btn-info btn-circle" title="Editar Dicionário">
+                                                    <i class="fa fa-edit">
+                                                    </i>
+                                                </a>
+                                                <a href="{{ url ('dictionars/destroy/'.$dictionar->id) }}" type="button" class="btn btn-warning btn-circle" title="Apagar Dicionário">
+                                                    <i class="fa fa-times">
+                                                    </i>
+                                                </a>
+                                            </nobr>
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>

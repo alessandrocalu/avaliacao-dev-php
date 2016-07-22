@@ -48,7 +48,7 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        //
+        return "Criar Autor";
     }
 
     /**
@@ -81,7 +81,7 @@ class AuthorController extends Controller
      */
     public function edit($id)
     {
-        //
+        return "Editar Autor ".$id;
     }
 
     /**
@@ -104,6 +104,6 @@ class AuthorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return "Apagar Autor ".$id;
     }
 }

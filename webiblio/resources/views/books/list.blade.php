@@ -13,6 +13,9 @@
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="table-responsive">
+                            <div class="pull-right">
+                                <a href="{{ url ('books/create') }}" type="button" class="btn btn-primary">Novo Livro</a>
+                            </div>
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
@@ -20,6 +23,7 @@
                                         <th>Título</th>
                                         <th>Subtítulo</th>
                                         <th>ISBN</th>
+                                        <th>Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -29,6 +33,18 @@
                                         <td>{{ $book->material->titulo }}</td>
                                         <td>{{ $book->material->subtitulo }}</td>
                                         <td>{{ $book->isbn }}</td>
+                                        <td>
+                                            <nobr>
+                                                <a href="{{ url ('books/edit/'.$book->id) }}" type="button" class="btn btn-info btn-circle" title="Editar Livro">
+                                                    <i class="fa fa-edit">
+                                                    </i>
+                                                </a>
+                                                <a href="{{ url ('books/destroy/'.$book->id) }}" type="button" class="btn btn-warning btn-circle" title="Apagar Livro">
+                                                    <i class="fa fa-times">
+                                                    </i>
+                                                </a>
+                                            </nobr>
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
