@@ -35,7 +35,8 @@ class DictionarController extends MaterialController
      */
     public function index()
     {
-        $data = $this->dictionar->all();
+        $dictionars = $this->dictionar->paginate(10);
+        $data["dictionars"] = $dictionars;
         return view('dictionars.list', $data);
     }
 

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
-    public function __construct()
+    public function material()
     {
     	return $this->belongsTo('App\Material');
     }

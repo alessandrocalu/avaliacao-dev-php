@@ -36,7 +36,8 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        $data = $this->author->all();
+        $authors = $this->author->paginate(10);
+        $data["authors"] = $authors;
         return view('authors.list', $data);
     }
 
