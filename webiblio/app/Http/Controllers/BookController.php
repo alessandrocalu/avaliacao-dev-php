@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -36,7 +38,7 @@ class BookController extends MaterialController
      */
     public function index()
     {
-        $books = $this->book->paginate(10);
+        $books = $this->book->orderBy('isbn')->paginate(10);
         $data["books"] = $books;
         return view('books.list', $data);
     }
@@ -59,7 +61,30 @@ class BookController extends MaterialController
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'titulo' => 'required',
+            'isbn' => 'required',
+            'paginas' => 'required',
+            'autores' => 'required'
+        ]);
+
+
+        if ($validator->fails()) { 
+            return redirect('books/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        else
+        {
+
+            $this->book->material_id = $this->grava_material($request);
+            $this->book->isbn = $request->isbn;
+            $this->book->paginas = $request->paginas;
+            $this->book->resumo = $request->resumo;
+            $this->book->save();
+
+            return redirect('books');
+        }    
     }
 
     /**
@@ -81,7 +106,10 @@ class BookController extends MaterialController
      */
     public function edit($id)
     {
-        //
+        $book = $this->book->find($id);
+        $data["book"] = $book;
+        $data["authors"] = $book->material->authors->all();
+        return view('books.edit', $data);
     }
 
     /**
@@ -91,9 +119,32 @@ class BookController extends MaterialController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'titulo' => 'required',
+            'isbn' => 'required',
+            'paginas' => 'required'
+        ]);
+
+
+        if ($validator->fails()) { 
+            return redirect('books/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        else
+        {
+
+            $this->book = $this->book->find($request->id);
+            $this->edita_material($request, $this->book->material_id);
+            $this->book->isbn = $request->isbn;
+            $this->book->paginas = $request->paginas;
+            $this->book->resumo = $request->resumo;
+            $this->book->save();
+
+            return redirect('books');
+        }    
     }
 
     /**

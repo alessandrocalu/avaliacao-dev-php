@@ -11,4 +11,8 @@ class Author extends Model
     {
     
     }
+
+    public function calcula_notacao($nome){
+    	return strtoupper(substr(trim($nome), 0, 3));
+    }
 }

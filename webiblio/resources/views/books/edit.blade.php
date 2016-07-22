@@ -24,6 +24,7 @@
                     </div>
                     <form action="{{ url ('books/update') }}" role="form" method="post">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="id" value="{{ $book->id }}">
                         <div class="row">
                             <div class="col-lg-1"></div>
                             <div class="col-lg-10 form-group">
@@ -70,15 +71,14 @@
                                     - {{$author->notacao }}:{{$author->nome }}<br> 
                                 @endforeach
                                 </p>
-                                <input name="limpar_autores_atuais" type="checkbox">Limpar autores atuais
                             </div>
                             <div class="col-lg-1"></div>
                         </div> 
                         <div class="row">
                             <div class="col-lg-1"></div>
                             <div class="col-lg-10 form-group">
-                                <label>Novos Autores</label>
-                                <input name="autores" class="form-control" placeholder="Preencha os nomes dos autores separados por vírgula(,)" required>
+                                <label>Modificar Autores</label>
+                                <input name="autores" class="form-control" placeholder="Preencha os nomes dos autores substitutos separados por vírgula(,)">
                             </div>
                             <div class="col-lg-1"></div>
                         </div>

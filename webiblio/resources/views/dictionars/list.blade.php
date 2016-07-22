@@ -39,7 +39,7 @@
                                                     <i class="fa fa-edit">
                                                     </i>
                                                 </a>
-                                                <a href="{{ url ('dictionars/destroy/'.$dictionar->id) }}" type="button" class="btn btn-warning btn-circle" title="Apagar Dicionário">
+                                                <a href="{{ url ('dictionars/delete/'.$dictionar->id) }}" type="button" class="btn btn-warning btn-circle" title="Apagar Dicionário">
                                                     <i class="fa fa-times">
                                                     </i>
                                                 </a>

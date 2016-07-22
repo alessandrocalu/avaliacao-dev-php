@@ -24,11 +24,12 @@
                     </div>
                     <form action="{{ url ('dictionars/update') }}" role="form" method="post">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="id" value="{{ $dictionar->id }}">
                         <div class="row">
                             <div class="col-lg-1"></div>
                             <div class="col-lg-10 form-group">
                                 <label>Título</label>
-                                <input name="titulo" value="{{ $dicionar->material->titulo }}" class="form-control" placeholder="Preencha o título"  required>
+                                <input name="titulo" value="{{ $dictionar->material->titulo }}" class="form-control" placeholder="Preencha o título"  required>
                             </div>
                             <div class="col-lg-1"></div>
                         </div> 
@@ -36,7 +37,7 @@
                             <div class="col-lg-1"></div>
                             <div class="col-lg-10 form-group">
                                 <label>Subtítulo</label>
-                                <input name="subtitulo" value="{{ $dicionar->material->subtitulo }}" class="form-control" placeholder="Preencha o subtítulo" >
+                                <input name="subtitulo" value="{{ $dictionar->material->subtitulo }}" class="form-control" placeholder="Preencha o subtítulo" >
                             </div>
                             <div class="col-lg-1"></div>
                         </div> 
@@ -48,13 +49,13 @@
                             </div>
                             <div class="col-lg-1"></div>
                         </div>
-                        @if ($dicionar->material->imagem_capa != '')
+                        @if ($dictionar->material->imagem_capa != '')
                             <div class="row">
                                 <div class="col-lg-1"></div>
                                 <div class="col-lg-10">
                                     <label>Imagem Capa Atual</label>
                                     <br>
-                                    <img scr="{{ asset('images/'.$dicionar->material->imagem_capa) }}" />
+                                    <img scr="{{ asset('images/'.$dictionar->material->imagem_capa) }}" />
                                     <input name="limpar_imagem_atual" type="checkbox">Limpar imagem atual
                                 </div>
                                 <div class="col-lg-1"></div>
@@ -70,15 +71,14 @@
                                     - {{$author->notacao }}:{{$author->nome }}<br> 
                                 @endforeach
                                 </p>
-                                <input name="limpar_autores_atuais" type="checkbox">Limpar autores atuais
                             </div>
                             <div class="col-lg-1"></div>
                         </div> 
                         <div class="row">
                             <div class="col-lg-1"></div>
                             <div class="col-lg-10 form-group">
-                                <label>Novos Autores</label>
-                                <input name="subtitulo" class="form-control" placeholder="Preencha os nomes dos autores separados por vírgula(,)" required>
+                                <label>Modificar Autores</label>
+                                <input name="autores" class="form-control" placeholder="Preencha os nomes dos autores substitutos separados por vírgula(,)">
                             </div>
                             <div class="col-lg-1"></div>
                         </div>

@@ -22,7 +22,7 @@
                     <div class="row">
                         <br>
                     </div>
-                    <form action="{{ url ('books/store') }}" role="form" method="post">
+                    <form action="{{ url ('dictionars/store') }}" role="form" method="post">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="row">
                             <div class="col-lg-1"></div>
@@ -52,7 +52,7 @@
                             <div class="col-lg-1"></div>
                             <div class="col-lg-10 form-group">
                                 <label>Autores</label>
-                                <input name="subtitulo" class="form-control" placeholder="Preencha os nomes dos autores separados por vírgula(,)" required>
+                                <input name="autores" class="form-control" placeholder="Preencha os nomes dos autores separados por vírgula(,)" required>
                             </div>
                             <div class="col-lg-1"></div>
                         </div>

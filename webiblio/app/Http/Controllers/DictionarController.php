@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -35,7 +37,7 @@ class DictionarController extends MaterialController
      */
     public function index()
     {
-        $dictionars = $this->dictionar->paginate(10);
+        $dictionars = $this->dictionar->orderBy('updated_at')->paginate(10);
         $data["dictionars"] = $dictionars;
         return view('dictionars.list', $data);
     }
@@ -58,7 +60,28 @@ class DictionarController extends MaterialController
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'titulo' => 'required',
+            'edicao' => 'required',
+            'autores' => 'required'
+        ]);
+
+
+        if ($validator->fails()) { 
+            return redirect('dictionars/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        else
+        {
+
+            $this->dictionar->material_id = $this->grava_material($request);
+            $this->dictionar->edicao = $request->edicao;
+            $this->dictionar->classificacao = $request->classificacao;
+            $this->dictionar->save();
+
+            return redirect('dictionars');
+        } 
     }
 
     /**
@@ -80,7 +103,10 @@ class DictionarController extends MaterialController
      */
     public function edit($id)
     {
-        //
+        $dictionar = $this->dictionar->find($id);
+        $data["dictionar"] = $dictionar;
+        $data["authors"] = $dictionar->material->authors->all();
+        return view('dictionars.edit', $data);
     }
 
     /**
@@ -92,7 +118,27 @@ class DictionarController extends MaterialController
      */
     public function update(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'titulo' => 'required',
+            'edicao' => 'required'
+        ]);
+
+
+        if ($validator->fails()) { 
+            return redirect('dictionars/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        else
+        {
+            $this->dictionar = $this->dictionar->find($request->id);
+            $this->edita_material($request, , $this->dictionar->material_id);
+            $this->dictionar->edicao = $request->edicao;
+            $this->dictionar->classificacao = $request->classificacao;
+            $this->dictionar->save();
+
+            return redirect('dictionars');
+        }   
     }
 
     /**

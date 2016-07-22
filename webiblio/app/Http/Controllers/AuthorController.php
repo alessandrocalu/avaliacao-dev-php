@@ -75,10 +75,10 @@ class AuthorController extends Controller
         else
         {
 
-            $this->author->nome = $request->nome;
+            $this->author->nome = trim($request->nome);
             $this->author->notacao = $request->notacao;
             if ($this->author->notacao == ''){
-                $this->author->notacao = strtoupper(substr($this->author->nome, 0, 3));
+                $this->author->notacao = $this->author->calcula_notacao($this->author->nome);
             }
             $this->author->save();
             return redirect('authors');
@@ -136,7 +136,7 @@ class AuthorController extends Controller
             $this->author->nome = $request->nome;
             $this->author->notacao = $request->notacao;
             if ($this->author->notacao == ''){
-                $this->author->notacao = strtoupper(substr($this->author->nome, 0, 3));
+                $this->author->notacao = $this->author->calcula_notacao($nome);
             }
             $this->author->save();
             return redirect('authors');

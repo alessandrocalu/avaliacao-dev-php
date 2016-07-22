@@ -39,7 +39,7 @@
                                                     <i class="fa fa-edit">
                                                     </i>
                                                 </a>
-                                                <a href="{{ url ('books/destroy/'.$book->id) }}" type="button" class="btn btn-warning btn-circle" title="Apagar Livro">
+                                                <a href="{{ url ('books/delete/'.$book->id) }}" type="button" class="btn btn-warning btn-circle" title="Apagar Livro">
                                                     <i class="fa fa-times">
                                                     </i>
                                                 </a>
