@@ -107,6 +107,7 @@ class MagazineController extends MaterialController
     {
         $magazine = $this->magazine->find($id);
         $data["magazine"] = $magazine;
+        $data["imagem_link"] = $this->link_imagem($magazine->material_id, $magazine->material->imagem_capa);
         $data["authors"] = $magazine->material->authors->all();
         return view('magazines.edit', $data);
     }

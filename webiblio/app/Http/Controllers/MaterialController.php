@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use League\Flysystem\File;
+
 use App\Http\Requests;
 
 use App\Material;
 
 use App\Author;
+
+use Storage;
 
 
 class MaterialController extends Controller
@@ -123,14 +127,15 @@ class MaterialController extends Controller
         $this->material = new Material;
         $this->material->titulo = $request->titulo;
         $this->material->subtitulo = $request->subtitulo;
-            
+        $this->material->save();
+
         //Trata imagem
-        $imagem = $this->grava_imagem($request);
+        $imagem = $this->grava_imagem($request, $this->material->id);
         if ($imagem != ""){
             $this->material->imagem_capa = $imagem;   
         } 
-         $this->material->save();
-
+        
+        $this->material->save();
 
         //Trata autores
         $autores = $request->autores;
@@ -155,11 +160,11 @@ class MaterialController extends Controller
         $this->material->subtitulo = $request->subtitulo;
    
         //Trata imagem
-        $imagem = $this->grava_imagem($request);
+        $imagem = $this->grava_imagem($request, $material_id);
         if ($imagem != ""){
             $this->material->imagem_capa = $imagem;   
         } 
-         $this->material->save();
+        $this->material->save();
 
 
         //Trata autores
@@ -180,16 +185,44 @@ class MaterialController extends Controller
      * @param  Request de arquivo  $imagem
      * @return String para Path
      */
-    private function grava_imagem($request){
+    private function grava_imagem($request, $material_id){
         if ($request->hasFile('arquivo_capa')) {
             if ($request->file('arquivo_capa')->isValid()) {
                 $filename = $request->file('arquivo_capa')->getClientOriginalName();
-                $request->file('arquivo_capa')->move(public_path().'/images',$filename);
-                return $filename;
+                if ((strpos($filename, ".jpg") > 0) || (strpos($filename, ".png") > 0)) {
+                    $extensao = ((strpos($filename, ".jpg") > 0)?'.jpg':'.png');
+
+                    //Storage imagem em S3
+                    $disk = Storage::disk('s3');
+                    if ($disk->exists('alessandro/imagem_'.$material_id.$extensao)){
+                        $disk->delete('alessandro/imagem_'.$material_id.$extensao);
+                    }
+                    $request->file('arquivo_capa')->move(public_path().'/images',$filename);
+                    $disk->put('alessandro/imagem_'.$material_id.$extensao, file_get_contents(public_path().'/images/'.$filename),'public');
+
+                    return $filename;
+                }
             }
         }
         return "";
     }
+
+
+    public function link_imagem($material_id, $filename){
+        if ($filename <> ""){
+            $extensao = ((strpos($filename, ".jpg") > 0)?'.jpg':'.png');
+            $s3 = Storage::disk('s3');
+            if ($s3->exists('alessandro/imagem_'.$material_id.$extensao)){
+                return $s3->url('alessandro/imagem_'.$material_id.$extensao);    
+            }
+            elseif (file_exists(public_path().'/images/'.$filename))
+            {
+                return asset('images/'.$filename);
+            }    
+        }    
+        return "";
+    }
+
 
     /**
      * Retorna lista de autores de acordo com nomes

@@ -104,6 +104,7 @@ class DictionarController extends MaterialController
     public function edit($id)
     {
         $dictionar = $this->dictionar->find($id);
+        $data["imagem_link"] = $this->link_imagem($dictionar->material_id, $dictionar->material->imagem_capa);
         $data["dictionar"] = $dictionar;
         $data["authors"] = $dictionar->material->authors->all();
         return view('dictionars.edit', $data);

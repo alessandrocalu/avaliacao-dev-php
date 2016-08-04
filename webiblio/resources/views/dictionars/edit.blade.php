@@ -49,13 +49,13 @@
                             </div>
                             <div class="col-lg-1"></div>
                         </div>
-                        @if ($dictionar->material->imagem_capa != '')
+                        @if ($imagem_link != '')
                             <div class="row">
                                 <div class="col-lg-1"></div>
                                 <div class="col-lg-10">
                                     <label>Imagem Capa Atual</label>
                                     <br>
-                                    <img src="{{ asset('images/'.$dictionar->material->imagem_capa) }}" />
+                                    <img src="{{ $imagem_link }}" />
                                 </div>
                                 <div class="col-lg-1"></div>
                             </div> 

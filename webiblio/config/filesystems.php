@@ -50,16 +50,16 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
+            'root' => storage_path('app/public/images'),
             'visibility' => 'public',
         ],
 
         's3' => [
             'driver' => 's3',
-            'key' => 'your-key',
-            'secret' => 'your-secret',
-            'region' => 'your-region',
-            'bucket' => 'your-bucket',
+            'key' => 'AKIAIBSPSIZGZ74JMUEQ',
+            'secret' => 'SlhphpMtlGJkFA6T6wbIj/bvl7x08OZUtK6GNGM0',
+            'region' => 'us-east-1',
+            'bucket' => 'avaliacao-dev-php',
         ],
 
     ],

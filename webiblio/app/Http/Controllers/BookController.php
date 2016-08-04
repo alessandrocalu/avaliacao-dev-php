@@ -107,6 +107,7 @@ class BookController extends MaterialController
     public function edit($id)
     {
         $book = $this->book->find($id);
+        $data["imagem_link"] = $this->link_imagem($book->material_id, $book->material->imagem_capa);
         $data["book"] = $book;
         $data["authors"] = $book->material->authors->all();
         return view('books.edit', $data);
