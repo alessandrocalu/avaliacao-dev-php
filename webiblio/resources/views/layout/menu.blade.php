@@ -33,6 +33,9 @@
                         <li {{ (Request::is('*dictionars') ? 'class="active"' : '') }}>
                             <a href="{{ url ('dictionars') }}"><i class="fa fa-book fa-fw"></i> Dicionários</a>
                         </li>
+                         <li {{ (Request::is('*magazines') ? 'class="active"' : '') }}>
+                            <a href="{{ url ('magazines') }}"><i class="fa fa-book fa-fw"></i> Revistas</a>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

@@ -7,4 +7,4 @@ mas pode ser SQLLite ou SQL Server.
 4) Configure o acesso ao banco de dados a partir do arquivo .env . No arquivo webiblio/config/database.php 
 vc tem as configurações validas para diversos bancos.
 5) Na pasta do webiblio execute o comando: php artisan migrate . Este comando criará as tabelas no banco escolhido.
-7) Acesse http://[seulocal]/webiblio/public para usar o sistema
+7) Acesse http://[seulocal]/webiblio/public para usar o sistema.

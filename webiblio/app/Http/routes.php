@@ -46,3 +46,15 @@ Route::get('books/destroy/{id}', 'BookController@destroy');
 Route::post('books/store', 'BookController@store');
 Route::post('books/update', 'BookController@update');
 
+
+
+
+Route::get('magazines', 'MagazineController@index');
+Route::get('magazines/create', 'MagazineController@create');
+Route::get('magazines/edit/{id}', 'MagazineController@edit');
+Route::get('magazines/delete/{id}', 'MagazineController@delete');
+Route::get('magazines/destroy/{id}', 'MagazineController@destroy');
+
+Route::post('magazines/store', 'MagazineController@store');
+Route::post('magazines/update', 'MagazineController@update');
+
